@@ -1,0 +1,27 @@
+{
+  "name": "reestructuradelservidor",
+  "version": "1.0.0",
+  "description": "Curso de Backend de Coderhosue. Desafio entregable de clase 27: Reestructura de nuestro servidor.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarceloDutto/CoderBackend_Desafio-RestructuraDelServidor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarceloDutto/CoderBackend_Desafio-RestructuraDelServidor/issues"
+  },
+  "homepage": "https://github.com/MarceloDutto/CoderBackend_Desafio-RestructuraDelServidor#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "morgan": "^1.10.0"
+  }
+}
