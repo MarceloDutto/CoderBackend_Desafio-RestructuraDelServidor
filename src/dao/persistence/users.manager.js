@@ -19,6 +19,15 @@ class UserManager {
             console.log(error);
         }
     };
+
+    findUserById = async (idRef) => {
+        try {
+            const user = await User.findById(idRef);
+            return user? user : {};
+        } catch(error) {
+            console.log(error);
+        }
+    }
 };
 
 export default UserManager;

@@ -33,4 +33,13 @@ export const findUserByEmail = async (emailRef) => {
     } catch(error) {
         console.log(error);
     }
+};
+
+export const findUserById = async (idRef) => {
+    try {
+        const user = await um.findUserById(idRef);
+        return user;
+    } catch(error) {
+        console.log(error);
+    }
 }

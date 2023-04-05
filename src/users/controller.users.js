@@ -1,30 +1,22 @@
 import { Router } from "express";
-import { registerUser, findUserByEmail } from "./service.users.js";
+import passport from "passport";
 
 const router = Router();
 
-router.post('/', async (req, res) => {
-    const { first_name, last_name, age, email, password } = req.body;
-    if(!first_name || !last_name || !age || !email || !password) return res.status(400).json({error: 'Debe rellenar todos los campos'});
-
-    const user = await findUserByEmail(email);
-    if(Object.keys(user).length !== 0) return res.status(400).json({error: 'Ya existe un usuario registrado con ese correo electrónico'});
-
+router.post('/', passport.authenticate('registerUser', {failureRedirect: '/api/users/failRegister'}) ,async (req, res) => {
     try {
-        const newUserInfo = {
-            first_name,
-            last_name,
-            age,
-            email,
-            password
-        }
-
-        const response = await registerUser(newUserInfo);
-        res.status(201).json({message: 'Usuario creado con éxito', response});
+        const newUser = req.user;
+        res.status(201).json({message: 'Usuario creado con éxito', user: newUser});
     } catch(error) {
         console.log(error);
-        res.status(500).json({error: 'Error al registrar el usuario'});
+        if(error.code === 11000) return res.status(400).json({error: 'Ya existe un usuario con ese correo electrónico'});
+        res.status(500).json({error: 'Error interno del servidor'});
     }
+});
+
+router.get('/failRegister', async (req, res) => {
+    console.log('Falló el registro del usuario');
+    res.status(500).json({message: 'Falló el registro del usuario'});
 });
 
 export default router;
