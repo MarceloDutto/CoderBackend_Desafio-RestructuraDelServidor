@@ -3,7 +3,7 @@ import passport from "passport";
 
 const router = Router();
 
-router.post('/', passport.authenticate('registerUser', {failureRedirect: '/api/users/failRegister'}) ,async (req, res) => {
+router.post('/', passport.authenticate('registerUser', {successRedirect: '/login', failureRedirect: '/api/users/failRegister'}) ,async (req, res) => {
     try {
         const newUser = req.user;
         res.status(201).json({message: 'Usuario creado con éxito', user: newUser});
