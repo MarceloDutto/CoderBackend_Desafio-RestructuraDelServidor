@@ -22,5 +22,6 @@ form.addEventListener('submit', e => {
     })
     .then(response => response.json())
     .then(data => console.log(data))
+    .then(() => {window.location.href = '/products'})
     .catch(error => console.log(error))
 });
